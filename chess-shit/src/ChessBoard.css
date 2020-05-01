@@ -1,0 +1,17 @@
+.chessboard-table {
+	margin: 0 auto;
+	box-shadow: 0 10px 20px 10px rgba(0,0,0,0.3)
+}
+
+.black-cell,
+.white-cell {
+	width: 64px;
+	height: 64px;
+}
+.black-cell {
+	background-color: #333;
+}
+
+.white-cell {
+	background-color: #eee;
+}
