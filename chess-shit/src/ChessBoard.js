@@ -5,46 +5,52 @@ import './ChessBoard.css';
 const chessboardSize = 8;
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-
 function Number({ n }) {
 	return <th>{n}</th>
 }
 
-function ABC(){
+function ABC({ width }){
     return <tr>
 		<td></td>
-		{Array.from(new Array(chessboardSize)).map((_, index) => (
+		{Array.from(new Array(width)).map((_, index) => (
 			<th key={index}>{alphabet.charAt(index)}</th>
 		))}
 		<td></td>
-    </tr>
+	</tr>
 }
 
-function Cell({ x, y }) {
+function Cell({ x, y, board }) {
 	const isBlack = (x + y) % 2;
+	const piece = board.getPieceAtCoordinate(x, y);
 
+	
 	return <td key={x} className={isBlack ? 'black-cell' : 'white-cell'}>
-		{x}, {y}
+		{
+			piece ? piece.iconName : '(no piece)'
+		}
 	</td>
 }
 
-export default ({ }) => {
-	return <table className="chessboard-table">
-		<tbody>
-			<ABC />
+export default ({ board }) => {
+	const chessboardSize = board.width;
 
-			{Array.from(new Array(chessboardSize)).map((_, y) => <tr key={y}>
-				<Number n={chessboardSize - y} />
-				{Array.from(new Array(chessboardSize)).map((_, x) => <Cell
+	return <table className="chessboard-table" cellSpacing={0}>
+		<tbody>
+			<ABC width={board.width}/>
+
+			{Array.from(new Array(board.height)).map((_, y) => <tr key={y}>
+				<Number n={board.height - y} />
+				{Array.from(new Array(board.width)).map((_, x) => <Cell
 					key={x}
 					x={x}
 					y={y}
+					board={board}
 				/>)}
-				<Number n={chessboardSize - y} />
+				<Number n={board.height - y} />
 
 			</tr>)}
 
-			<ABC />
+			<ABC width={board.width}/>
 		</tbody>
 	</table>
 }

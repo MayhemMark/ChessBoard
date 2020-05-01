@@ -1,17 +1,30 @@
 .chessboard-table {
 	margin: 0 auto;
-	box-shadow: 0 10px 20px 10px rgba(0,0,0,0.3)
+	box-shadow: 0 10px 20px 10px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-image: url('./seamless-border.jpg');
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.chessboard-table th {
+	min-width: 20px;
+	min-height: 20px;
 }
 
 .black-cell,
 .white-cell {
 	width: 64px;
 	height: 64px;
+	font-weight: bold;
 }
 .black-cell {
 	background-color: #333;
+	background-image: url('./seamless-dark.jpg');
+	color: white;
 }
 
 .white-cell {
 	background-color: #eee;
+	background-image: url('./seamless-light.jpg');
 }
